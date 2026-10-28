@@ -1,0 +1,53 @@
+{
+  "name": "qwen3-8b-inference-lab-v2",
+  "cloud": "SECURE",
+  "dataCenterIds": [
+    "CA-MTL-1"
+  ],
+  "gpu": {
+    "id": "NVIDIA A40",
+    "count": 1,
+    "minCudaVersion": "13.0"
+  },
+  "image": "vllm/vllm-openai:v0.32.0",
+  "disk": 20,
+  "mounts": {
+    "persistent": {
+      "size": 30,
+      "path": "/workspace"
+    }
+  },
+  "ports": [
+    "8000/http"
+  ],
+  "env": {
+    "HF_HOME": "/workspace/huggingface",
+    "VLLM_API_KEY": "${VLLM_API_KEY}",
+    "VLLM_NO_USAGE_STATS": "1"
+  },
+  "entrypoint": [
+    "python3",
+    "-m",
+    "vllm.entrypoints.openai.api_server"
+  ],
+  "cmd": [
+    "--model",
+    "Qwen/Qwen3-8B",
+    "--revision",
+    "b968826d9c46dd6066d109eabc6255188de91218",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "4096",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-num-seqs",
+    "16"
+  ],
+  "startSsh": false,
+  "startJupyter": false
+}
