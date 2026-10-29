@@ -12,7 +12,7 @@ h1 {letter-spacing:-.045em;} h2 {letter-spacing:-.025em;}
 [data-testid="stMetric"] {background:#f1f5f9;padding:18px;border-radius:12px;}
 [data-testid="stMetricLabel"] {color:#334155;}
 </style>''', unsafe_allow_html=True)
-st.caption('GRANT’S INFERENCE LAB  /  PROJECT 01')
+st.caption('INFERENCE SERVING LAB  /  PROJECT 01')
 st.title('What makes an LLM feel fast?')
 st.markdown('I deployed **Qwen3-8B on one A40 GPU** and measured what happens when more people, '
             'longer documents, and longer answers compete for the same machine.')
@@ -26,7 +26,7 @@ with st.sidebar:
     st.caption('These controls recalculate latency-qualified goodput from recorded requests. '
                'They do not run new GPU tests.')
     st.divider()
-    st.write('Built by Grant · AI infrastructure learning through product decisions.')
+    st.write('AI infrastructure learning through product decisions.')
     st.caption('Historical results explorer. No live inference or API credentials required.')
 
 story, experiments, costs, evidence = st.tabs(['The findings', 'Explore experiments', 'Cost tradeoffs', 'How it was measured'])
@@ -140,4 +140,4 @@ with evidence:
                 '[Runpod pricing](https://docs.runpod.io/pods/pricing)')
 
 st.divider()
-st.caption('A portfolio learning project by Grant · Evidence before infrastructure complexity · Version 1')
+st.caption('An inference serving lab · Evidence before infrastructure complexity · Version 1')
