@@ -78,7 +78,7 @@ For an AI Inference Advisor, these measurements can inform workload-specific rec
 
 Start with [instrumented results](inference-lab/instrumented-benchmark.md), then [quality evaluation](inference-lab/quality-evaluation.md), [concurrency](inference-lab/concurrency-benchmark.md), [operating point](inference-lab/interactive-operating-point.md), [output length](inference-lab/output-length-benchmark.md) and [input length](inference-lab/input-length-benchmark.md).
 
-Client timings include network/proxy delay. Closed-loop bursts and short admission windows are not realistic independent arrivals or maximum capacity estimates. Tail statistics have small samples. Synthetic prompts and prefix caching affect generalization. Server metrics add queue/prefill/decode and sampled KV evidence, but GPU utilization was not reliably measured. Quality scores were user-reported. No public availability, load-balancing, failover or Kubernetes claims are made.
+Client timings include network/proxy delay. Closed-loop bursts and short admission windows are not realistic independent arrivals or maximum capacity estimates. Tail statistics have small samples. Synthetic prompts and prefix caching affect generalization. Server metrics add queue/prefill/decode and sampled KV evidence, but GPU utilization was not reliably measured. Quality scores were user-reported. No inference-service availability, load-balancing, failover or Kubernetes claims are made.
 
 ## Resume in another session
 
@@ -96,4 +96,7 @@ python3 -m pip install -r requirements.txt
 python3 -m streamlit run streamlit_app.py
 ```
 
-For Streamlit Community Cloud: repository `GrantMeAWish/open-source-llm-serving-lab`, branch `main`, entry point `streamlit_app.py`. No secrets are required. Deploy the app with public visibility while keeping the GitHub repository private. This shares the displayed results and downloadable sanitized experiment data, not an authenticated inference endpoint. Configuration is in `.streamlit/config.toml`.
+For Streamlit Community Cloud: repository `GrantMeAWish/open-source-llm-serving-lab`, branch `main`, entry point `streamlit_app.py`. No secrets are required. The repository and app are public, as requested. This shares the displayed results and downloadable sanitized experiment data, not an authenticated inference endpoint. Configuration is in `.streamlit/config.toml`.
+
+
+Public results explorer: https://llm-inference-serving-lab.streamlit.app/ . Site content omits the author name; GitHub ownership remains visible on GitHub.
