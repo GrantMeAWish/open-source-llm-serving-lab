@@ -72,7 +72,7 @@ Illustration using the measured 128-token concurrency-2 rate: $0.59 / (0.455 com
 
 Continuous batching shares one GPU across active sequences. Vertical scaling uses a more capable GPU or more resources per replica. Horizontal scaling adds independent replicas, increasing aggregate capacity and enabling redundancy, while duplicating model memory and requiring routing. Kubernetes is optional: it becomes useful for scheduling, health management and autoscaling across a larger deployment. Traffic growth alone does not require it.
 
-For an AI Inference Advisor, these measurements can inform workload-specific recommendations using input/output lengths, concurrency, latency objectives and utilization assumptions. This lab provides evidence and example data; no production integration with the existing Advisor has been implemented. Quantization, a deliberate KV-cache pressure test, and replica/failure comparisons remain future work. Approximate TPOT is recorded in the burst results; latency-qualified goodput excludes answer quality. Cost per million tokens has not yet been calculated.
+For an AI Inference Advisor, these measurements can inform workload-specific recommendations using input/output lengths, concurrency, latency objectives and utilization assumptions. This lab provides evidence and example data; no production integration with the existing Advisor has been implemented. Quantization, a deliberate KV-cache pressure test, and replica/failure comparisons remain future work. Approximate TPOT is recorded in the burst results; latency-qualified goodput excludes answer quality. The Streamlit explorer now calculates estimated compute cost per million output tokens from each measured throughput, with adjustable hourly price and busy fraction. This excludes storage and is an extrapolation, not a bill.
 
 ## Evidence and limitations
 
@@ -85,3 +85,15 @@ Client timings include network/proxy delay. Closed-loop bursts and short admissi
 “Read this README and the instrumented report. The first portfolio version is complete. Inspect existing endpoint state before any billable action. Explain the findings and remaining limitations; prioritize packaging or a chosen product question over more benchmarks. Do not expose .env or publish credentials. Optional next work: repeat realistic traffic with an agreed latency target, or evaluate quantization/replicas.”
 
 Official references: [Qwen3-8B model](https://huggingface.co/Qwen/Qwen3-8B), [vLLM Docker](https://docs.vllm.ai/en/latest/deployment/docker/), [vLLM metrics](https://docs.vllm.ai/en/latest/design/metrics/), [Runpod pricing](https://docs.runpod.io/pods/pricing).
+
+
+## Public results explorer
+
+`streamlit_app.py` presents historical findings, interactive latency targets, raw-result downloads, and compute cost per million output tokens. It reads only saved benchmark JSON and reports. It does not import the inference client, call Runpod, load .env, or require API keys.
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m streamlit run streamlit_app.py
+```
+
+For Streamlit Community Cloud: repository `GrantMeAWish/open-source-llm-serving-lab`, branch `main`, entry point `streamlit_app.py`. No secrets are required. Deploy the app with public visibility while keeping the GitHub repository private. This shares the displayed results and downloadable sanitized experiment data, not an authenticated inference endpoint. Configuration is in `.streamlit/config.toml`.
