@@ -100,3 +100,15 @@ For Streamlit Community Cloud: repository `GrantMeAWish/open-source-llm-serving-
 
 
 Public results explorer: https://llm-inference-serving-lab.streamlit.app/ . Site content omits the author name; GitHub ownership remains visible on GitHub.
+
+## Companion project: Enterprise AI Platform Lab
+
+The [Enterprise AI Platform Lab](https://github.com/GrantMeAWish/enterprise-ai-platform-lab)
+is maintained in a separate repository. It adds an authenticated multi-team model
+gateway, routing and fallback, usage budgets, audit records and approval-gated
+operations workflows. It has its own dependencies, tests, release history and
+Runpod deployment; this repository continues to own the serving experiments and
+the Streamlit results explorer.
+
+The projects connect through OpenAI-compatible model APIs and explicitly versioned
+benchmark data. Neither repository imports source files from the other.
